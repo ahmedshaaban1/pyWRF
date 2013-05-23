@@ -229,9 +229,9 @@ def draw_skewt(p, h, T, Td, u, v, imagename, title = None, show = False):
 
     Example usage:
         skewt.draw_skewt(p/100.0 (Grrr), h, t (C), td (C), 'louse.png', title = 'woo.png', show = False)
-    
+
     '''
-    
+
 #    print "repr(p)"
 #    print repr(p)
 #    print "repr(h)"
@@ -247,12 +247,12 @@ def draw_skewt(p, h, T, Td, u, v, imagename, title = None, show = False):
     fig.clf()
 
     ax = fig.add_axes([.125,.1,.7,.8], projection='skewx')
-    
+
     ax.grid(True)
-    
+
     ax.semilogy(T, p, 'r')
     ax.semilogy(Td, p, 'g')
-    
+
     xticklocs=np.arange(-80,45,10)
 
     # T0 = ax.get_xticks()
@@ -283,24 +283,24 @@ def draw_skewt(p, h, T, Td, u, v, imagename, title = None, show = False):
 #    moist_adiabat = LineCollection(linedata, colors='b', linestyles='dashed',
 #        alpha=0.8)
 #    ax.add_collection(moist_adiabat)
-    
+
 
     ax.set_ylabel('Pressure (hPa)')
     ax.set_xlabel('Temperature (C)')
     if isinstance(title, str):
         ax.title.set_text(title)
-    
+
     # change plotting parameters : white box, white tick labels
     plt.rcParams.update({'axes.linewidth':0,'ytick.color':'k', 'ytick.major.size':0, 'ytick.minor.size':0})
     #plt.rcParams.update({'axes.linewidth':0,'ytick.color':'w', 'ytick.major.size':0, 'ytick.minor.size':0}) #simon changed
-    
+
     wbax=fig.add_axes([0.85,0.1,0.125,0.8],sharey=ax)
     wbax.barbs(np.zeros(p.shape)[::2], p[::2], u[::2], v[::2])
-    
+
     wbax.xaxis.set_ticks([],[])
     for tick in wbax.yaxis.get_major_ticks():
-	tick.label1On = False
-    
+        tick.label1On = False
+
     ax.set_yticks(np.linspace(100,1000,10))
     ax.yaxis.set_major_formatter(ScalarFormatter())
     ax.set_xticks(xticklocs)

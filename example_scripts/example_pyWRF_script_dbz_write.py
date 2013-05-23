@@ -17,7 +17,7 @@ wrf_files=dircache.listdir(input_directory)
 
 for wfile in wrf_files:
     if wfile[0:6] != 'wrfout':
-	continue
+        continue
 
     wrf_file=pyWRF.wrf_file(input_directory+wfile)
     times=wrf_file.get_var('Times')
@@ -39,24 +39,23 @@ for wfile in wrf_files:
     wrf_file.plot_directory= input_directory+'dbz_data'
     direxist=os.path.isdir(wrf_file.plot_directory)
     if (direxist == False):
-	os.system('mkdir -p '+wrf_file.plot_directory)
+        os.system('mkdir -p '+wrf_file.plot_directory)
 
     # Example: 4 dimensions ['T','BT','SN','WE']
-    wrf_file.write_netcdf_file(input_variable=dbz_interp[:,:,:,:],var_name='dBZ_interp',directory=wrf_file.plot_directory,filename=times[0]+'_ex1_dbz',var_dim=('T','BT','SN','WE'))  
+    wrf_file.write_netcdf_file(input_variable=dbz_interp[:,:,:,:],var_name='dBZ_interp',directory=wrf_file.plot_directory,filename=times[0]+'_ex1_dbz',var_dim=('T','BT','SN','WE'))
     wrf_file.write_netcdf_file(input_variable=times,var_name='Times',directory=wrf_file.plot_directory,filename=times[0]+'_ex1_dbz',var_dim=('T'))
 
 
 #   for the_time in range(len(times)):
- 	
-	# Example: 3 dimensions ['BT','SN','WE']
-#   	wrf_file.write_netcdf_file(input_variable=dbz_interp[the_time,:,:,:],var_name='dBZ_interp',directory=wrf_file.plot_directory,filename=times[the_time]+'_ex2_dbz',var_dim=('BT','SN','WE'))  
- 	
-	# Example: 3 dimensions ['T','SN','WE']   	
-#	wrf_file.write_netcdf_file(input_variable=dbz_interp[:,0,:,:],var_name='dBZ_interp',directory=wrf_file.plot_directory,filename=times[the_time]+'_ex3_dbz',var_dim=('T','SN','WE'))  
+
+        # Example: 3 dimensions ['BT','SN','WE']
+#       wrf_file.write_netcdf_file(input_variable=dbz_interp[the_time,:,:,:],var_name='dBZ_interp',directory=wrf_file.plot_directory,filename=times[the_time]+'_ex2_dbz',var_dim=('BT','SN','WE'))
+
+        # Example: 3 dimensions ['T','SN','WE']
+#       wrf_file.write_netcdf_file(input_variable=dbz_interp[:,0,:,:],var_name='dBZ_interp',directory=wrf_file.plot_directory,filename=times[the_time]+'_ex3_dbz',var_dim=('T','SN','WE'))
     break
 #    wrf_file.plot_cappi(level=10,dbz_array=dbz_interp,title=height_levels[level]/10)+'km',imagename='interp')
-       
-    
+
+
 
 #    print 'finished plotting time period '
-

@@ -14,9 +14,9 @@ wrf_files=dircache.listdir(input_directory)
 first_time=True
 for wfile in wrf_files:
     if wfile[0:6] != 'wrfout':
-	continue
+        continue
     if (first_time== False):
-	continue
+        continue
 
     wrf_file=pyWRF.wrf_file(input_directory+wfile)
     times=wrf_file.get_var('Times')

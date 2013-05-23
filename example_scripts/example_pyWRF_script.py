@@ -14,7 +14,7 @@ wrf_files=dircache.listdir(input_directory)
 
 for wfile in wrf_files:
     if wfile[0:6] != 'wrfout':
-	continue
+        continue
 
     wrf_file=pyWRF.wrf_file(input_directory+wfile)
     times=wrf_file.get_var('Times')
@@ -37,10 +37,10 @@ for wfile in wrf_files:
     wrf_file.plot_directory='plots'
     direxist=os.path.isdir(wrf_file.plot_directory)
     if (direxist == False):
-	os.system('mkdir -p '+wrf_file.plot_directory)
+        os.system('mkdir -p '+wrf_file.plot_directory)
 
     for time_count in range(len(times)):
-	time=times[time_count]
-	wrf_file.plot_skewt(i,j,time+'_skewt.png','Darwin Airport')
+        time=times[time_count]
+        wrf_file.plot_skewt(i,j,time+'_skewt.png','Darwin Airport')
         wrf_file.plot_vapor(imagename=time+'_vapor.png',title=time,timestep=time_count)
-	print 'finished plotting time period ' + time
+        print 'finished plotting time period ' + time
